@@ -13,7 +13,7 @@ int LastError; //Error[-1]
 int PrevError; //Error[-2]
 } PID;
 
-PID sptr={0,0.6,0,0.05,0,0};
+PID sptr={0,0.6,0,0,0,0};
 
 //calculate the increment,input current value ,output increment(/rpm)
 int calcuIncre(int iError)
@@ -23,7 +23,7 @@ int calcuIncre(int iError)
     //增量计算
 //    iIncpid = sptr.Proportion * iError- sptr.Integral * sptr.LastError + sptr.Derivative * sptr.PrevError;
 
-    iIncpid = sptr.Proportion * (iError - sptr.LastError) + sptr.Integral * iError + sptr.Derivative * (iError - 2*sptr.LastError + sptr.PrevError);
+    iIncpid = sptr.Proportion * iError + sptr.Integral * iError + sptr.Derivative * (iError - 2*sptr.LastError + sptr.PrevError);
     //存储误差，用于下次计算
     sptr.PrevError = sptr.LastError;
     sptr.LastError = iError;

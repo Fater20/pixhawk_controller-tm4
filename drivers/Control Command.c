@@ -102,7 +102,20 @@ void AltHold_Rise1(void)
 }
 void AltHold_Rise2(void)
 {
- 	set_ppm_channel_5(&ppm_data,1000,1000,1040,1000,750);
+	int CH_1=1000,CH_2=1000;
+
+//	//x方位修正
+//		if((dir_x<center_x+1)&&(dir_x>center_x-1))
+//			CH_2=1000;
+//		else CH_2=1000+calcuIncre(dir_x-center_x);
+//
+//	//y方位修正
+//		if((dir_y<center_y+1)&&(dir_y>center_y-1))
+//			CH_1=1000;
+//		else CH_1=1000+calcuIncre(center_y-dir_y);
+
+//载入油门值
+ 	set_ppm_channel_5(&ppm_data,CH_1,CH_2,1030,1000,750);
  	ppm_encoder_set_data(&ppm_data);
 }
 
