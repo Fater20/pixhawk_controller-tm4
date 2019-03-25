@@ -21,12 +21,16 @@ int calcuIncre(int iError)
     register int iIncpid;
 
     //增量计算
-    iIncpid = sptr.Proportion * iError- sptr.Integral * sptr.LastError + sptr.Derivative * sptr.PrevError;
+//    iIncpid = sptr.Proportion * iError- sptr.Integral * sptr.LastError + sptr.Derivative * sptr.PrevError;
+
+    iIncpid = sptr.Proportion * (iError - sptr.LastError) + sptr.Integral * iError + sptr.Derivative * (iError - 2*sptr.LastError + sptr.PrevError);
     //存储误差，用于下次计算
     sptr.PrevError = sptr.LastError;
     sptr.LastError = iError;
 
+
+
     //返回增量值
-    return(iIncpid);
+    return iIncpid;
 
 }
