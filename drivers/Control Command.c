@@ -106,13 +106,13 @@ void AltHold_Rise2(void)
 
 //	//x方位修正
 //		if((dir_x<center_x+1)&&(dir_x>center_x-1))
-//			CH_2=1000;
-//		else CH_2=1000+calcuIncre(dir_x-center_x);
+//			CH_1=1000;
+//		else CH_1=1000+calcuIncre(dir_x-center_x);
 //
 //	//y方位修正
 //		if((dir_y<center_y+1)&&(dir_y>center_y-1))
-//			CH_1=1000;
-//		else CH_1=1000+calcuIncre(center_y-dir_y);
+//			CH_2=1000;
+//		else CH_2=1000+calcuIncre(dir_y-center_y);
 
 //载入油门值
  	set_ppm_channel_5(&ppm_data,CH_1,CH_2,1030,1000,750);
@@ -124,13 +124,13 @@ void AltHold_Rise_Control(void)
 	int CH_1=1000,CH_2=1000;
 	//x方位修正
 		if((dir_x<center_x+1)&&(dir_x>center_x-1))
-			CH_2=1000;
-		else CH_2=1000+calcuIncre(dir_x-center_x);
+			CH_1=1000;
+		else CH_1=1000+calcuIncre(dir_x-center_x);
 
 	//y方位修正
 		if((dir_y<center_y+1)&&(dir_y>center_y-1))
-			CH_1=1000;
-		else CH_1=1000+calcuIncre(center_y-dir_y);
+			CH_2=1000;
+		else CH_2=1000+calcuIncre(dir_y-center_y);
 
 //载入油门值
  	set_ppm_channel_5(&ppm_data,CH_1,CH_2,1130,1000,750);
@@ -143,22 +143,22 @@ void AltHold_Fall(void)
 	int CH_1=1000,CH_2=1000;
 	//x方位修正
 		if((dir_x<center_x+1)&&(dir_x>center_x-1))
-			CH_2=1000;
-		else CH_2=1000+calcuIncre(dir_x-center_x);
+			CH_1=1000;
+		else CH_1=1000+calcuIncre(dir_x-center_x);
 
 	//y方位修正
 		if((dir_y<center_y+1)&&(dir_y>center_y-1))
-			CH_1=1000;
-		else CH_1=1000+calcuIncre(center_y-dir_y);
+			CH_2=1000;
+		else CH_2=1000+calcuIncre(dir_y-center_y);
 
 //载入油门值
- 	set_ppm_channel_5(&ppm_data,CH_1,CH_2,870,1000,750);
+ 	set_ppm_channel_5(&ppm_data,CH_1,CH_2,900,1000,750);
  	ppm_encoder_set_data(&ppm_data);
 }
 
 void AltHold_Fall_Continue(void)
 {
- 	set_ppm_channel_5(&ppm_data,1000,1000,880,1000,750);
+ 	set_ppm_channel_5(&ppm_data,1000,1000,600,1000,500);
  	ppm_encoder_set_data(&ppm_data);
 }
 
@@ -195,13 +195,13 @@ void Position_Control(void)
 //	}
 	//x方位修正
 		if((dir_x<center_x+1)&&(dir_x>center_x-1))
-			CH_2=1000;
-		else CH_2=1000+calcuIncre(dir_x-center_x);
+			CH_1=1000;
+		else CH_1=1000+calcuIncre(dir_x-center_x);
 
 	//y方位修正
 		if((dir_y<center_y+1)&&(dir_y>center_y-1))
-			CH_1=1000;
-		else CH_1=1000+calcuIncre(center_y-dir_y);
+			CH_2=1000;
+		else CH_2=1000+calcuIncre(dir_y-center_y);
 
 //载入油门值
  	set_ppm_channel_5(&ppm_data,CH_1,CH_2,CH_3,1000,750);

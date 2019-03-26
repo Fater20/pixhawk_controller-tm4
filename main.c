@@ -244,15 +244,15 @@ main(void)
 
 //降落
 
- 	dir_Distance=44;	//设定新的目标高度10cm
+ 	dir_Distance=50;	//设定新的目标高度10cm
  	AltHold_Fall();
  	while(int_Distance>dir_Distance)
  	{
-
- 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*10);
+ 		AltHold_Fall();
+ 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*98);
  	}
  	AltHold_Fall_Continue();
- 	ROM_SysCtlDelay((SysCtlClockGet()/3000)*700);
+ 	ROM_SysCtlDelay((SysCtlClockGet()/3000)*3000);
 
  	next:
 //飞控锁定
