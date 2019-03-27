@@ -164,7 +164,7 @@ main(void)
 
 //上升1
 
- 	dir_Distance=60;	//设定新的目标高度106cm
+ 	dir_Distance=90;	//设定新的目标高度106cm
  	AltHold_Rise1();
  	while(int_Distance<dir_Distance)
  	{
@@ -175,7 +175,7 @@ main(void)
 
 //上升2
 
- 	dir_Distance=126;	//设定新的目标高度106cm
+ 	dir_Distance=130;	//设定新的目标高度106cm
 	AltHold_Rise2();
 	while(int_Distance<dir_Distance)
 	{
@@ -208,7 +208,7 @@ main(void)
  		if((int_Distance>(dir_Distance-3))&&(int_Distance<(dir_Distance+3))&&(Ns!=1000))
  			delayNs(80);	//使能定时器中断，记时(0.2*80)s
 
- 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*98);
+ 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*10);
 
  		if(ST_FLAG==1)
  		{
@@ -244,13 +244,14 @@ main(void)
 
 //降落
 
- 	dir_Distance=50;	//设定新的目标高度10cm
+ 	dir_Distance=60;	//设定新的目标高度10cm
  	AltHold_Fall();
  	while(int_Distance>dir_Distance)
  	{
  		AltHold_Fall();
  		ROM_SysCtlDelay((SysCtlClockGet()/3000)*98);
  	}
+
  	AltHold_Fall_Continue();
  	ROM_SysCtlDelay((SysCtlClockGet()/3000)*3000);
 

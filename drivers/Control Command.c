@@ -10,10 +10,13 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
+#include "driverlib/uart.h"
 #include "ppm_encoder.h"
-#include "UART1.h"
+#include "utils/uartstdio.h"
 #include "PID.h"
+#include "UART1.h"
 #include "mavlink_recieve.h"
+#include "inc/hw_memmap.h"
 
 
 ppm_data_t ppm_data;
@@ -152,13 +155,13 @@ void AltHold_Fall(void)
 		else CH_2=1000+calcuIncre(dir_y-center_y);
 
 //载入油门值
- 	set_ppm_channel_5(&ppm_data,CH_1,CH_2,900,1000,750);
+ 	set_ppm_channel_5(&ppm_data,CH_1,CH_2,850,1000,750);
  	ppm_encoder_set_data(&ppm_data);
 }
 
 void AltHold_Fall_Continue(void)
 {
- 	set_ppm_channel_5(&ppm_data,1000,1000,600,1000,500);
+ 	set_ppm_channel_5(&ppm_data,1000,1000,750,1000,750);
  	ppm_encoder_set_data(&ppm_data);
 }
 
@@ -183,6 +186,8 @@ void AltHold_Control(void)
 void Position_Control(void)
 {
 	int CH_1=1000,CH_2=1000,CH_3=1000;
+//    int j=0;
+
 ////高度修正
 //	if(int_Distance<120)
 //	{
@@ -198,6 +203,7 @@ void Position_Control(void)
 			CH_1=1000;
 		else CH_1=1000+calcuIncre(dir_x-center_x);
 
+
 	//y方位修正
 		if((dir_y<center_y+1)&&(dir_y>center_y-1))
 			CH_2=1000;
@@ -206,6 +212,29 @@ void Position_Control(void)
 //载入油门值
  	set_ppm_channel_5(&ppm_data,CH_1,CH_2,CH_3,1000,750);
  	ppm_encoder_set_data(&ppm_data);
+// 	UARTCharPut(UART0_BASE,'0');
+////输出x方向油门
+// 	j=CH_1/1000;
+// 	UARTCharPut(UART0_BASE,'0'+j);
+// 	j=CH_1/100%10;
+// 	UARTCharPut(UART0_BASE,'0'+j);
+// 	j=CH_1/10%10;
+// 	UARTCharPut(UART0_BASE,'0'+j);
+// 	j=CH_1%10;
+// 	UARTCharPut(UART0_BASE,'0'+j);
+// 	UARTCharPut(UART0_BASE,' ');
+//
+// 	j=0;
+// 	//输出y方向油门
+// 	 	j=CH_2/1000;
+// 	 	UARTCharPut(UART0_BASE,'0'+j);
+// 	 	j=CH_2/100%10;
+// 	 	UARTCharPut(UART0_BASE,'0'+j);
+// 	 	j=CH_2/10%10;
+// 	 	UARTCharPut(UART0_BASE,'0'+j);
+// 	 	j=CH_2%10;
+// 	 	UARTCharPut(UART0_BASE,'0'+j);
+// 	 	UARTCharPut(UART0_BASE,'\n');
 
 }
 
@@ -215,3 +244,13 @@ void STOP(void)
  	ppm_encoder_set_data(&ppm_data);
 }
 
+int Throttle_limit(int throttle)
+{
+	int lim=80;
+	if(throttle>lim)
+		throttle=lim;
+	if(throttle<-lim)
+		throttle=-lim;
+
+	return throttle;
+}

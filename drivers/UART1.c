@@ -41,7 +41,7 @@ void ConfigureUART1 (void)
 
 
     UARTFIFOEnable(UART1_BASE);                                      //使能FIFO
-    UARTFIFOLevelSet(UART1_BASE,UART_FIFO_TX4_8, UART_FIFO_RX4_8);   //FIFO 8字节深度
+    UARTFIFOLevelSet(UART1_BASE,UART_FIFO_TX4_8, UART_FIFO_RX2_8);   //FIFO 8字节深度
 
     //无线串口配置
   //GPIOPinTypeGPIOOutput(GPIO_PORTB_BASE, GPIO_PIN_6 | GPIO_PIN_7);
@@ -103,6 +103,7 @@ void UART1IntHandler(void)
     }
 
     UARTDataDeal(ui8RxBuffer,&dir_x,&dir_y);
+
 //   UARTCharPut(UART1_BASE,'0'+dir_x);
 //   for (i=0;i<=10;i++);
 //   UARTCharPut(UART1_BASE,'0'+dir_y);

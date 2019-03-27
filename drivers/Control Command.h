@@ -25,5 +25,6 @@ void AltHold_Control(void);
 void Position_Control(void);
 void AltHold_Rise_Control(void);
 void STOP(void);
+int Throttle_limit(int throttle);
 
 #endif /* DRIVERS_CONTROL_COMMAND_H_ */
