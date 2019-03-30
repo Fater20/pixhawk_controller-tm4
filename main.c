@@ -208,7 +208,7 @@ main(void)
  		if((int_Distance>(dir_Distance-3))&&(int_Distance<(dir_Distance+3))&&(Ns!=1000))
  			delayNs(80);	//使能定时器中断，记时(0.2*80)s
 
- 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*10);
+ 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*50);
 
  		if(ST_FLAG==1)
  		{
@@ -249,7 +249,7 @@ main(void)
  	while(int_Distance>dir_Distance)
  	{
  		AltHold_Fall();
- 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*98);
+ 		ROM_SysCtlDelay((SysCtlClockGet()/3000)*30 );
  	}
 
  	AltHold_Fall_Continue();

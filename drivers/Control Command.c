@@ -186,7 +186,7 @@ void AltHold_Control(void)
 void Position_Control(void)
 {
 	int CH_1=1000,CH_2=1000,CH_3=1000;
-//    int j=0;
+//    int thro=0  ,n=1;
 
 ////高度修正
 //	if(int_Distance<120)
@@ -212,19 +212,23 @@ void Position_Control(void)
 //载入油门值
  	set_ppm_channel_5(&ppm_data,CH_1,CH_2,CH_3,1000,750);
  	ppm_encoder_set_data(&ppm_data);
-// 	UARTCharPut(UART0_BASE,'0');
+
 ////输出x方向油门
-// 	j=CH_1/1000;
-// 	UARTCharPut(UART0_BASE,'0'+j);
-// 	j=CH_1/100%10;
-// 	UARTCharPut(UART0_BASE,'0'+j);
-// 	j=CH_1/10%10;
-// 	UARTCharPut(UART0_BASE,'0'+j);
-// 	j=CH_1%10;
-// 	UARTCharPut(UART0_BASE,'0'+j);
-// 	UARTCharPut(UART0_BASE,' ');
+// 	thro=CH_1;
+// 	while(CH_1!=0)
+// 	{
 //
-// 	j=0;
+// 		CH_1/=10;
+// 		n=n*10;
+// 	}
+// 	while(n!=0)
+// 	{
+//
+// 		UARTCharPut(UART0_BASE,'0'+thro/n);
+// 		thro=thro-(thro/n)*n;
+// 		n/=10;
+// 	}
+// 	UARTCharPut(UART0_BASE,'\n');
 // 	//输出y方向油门
 // 	 	j=CH_2/1000;
 // 	 	UARTCharPut(UART0_BASE,'0'+j);
